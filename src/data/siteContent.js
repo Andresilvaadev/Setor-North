@@ -6,7 +6,7 @@ export const store = {
   logo: '/images/setornorth.jpeg',
   whatsapp: '5593991707749',
   instagram: 'setor.north',
-  instagramUrl: 'https://instagram.com/setor.north',
+  instagramUrl: 'https://www.instagram.com/setor.north/',
   email: '',
 }
 

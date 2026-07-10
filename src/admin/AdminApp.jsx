@@ -6,6 +6,7 @@ import ProductsAdmin from './ProductsAdmin'
 import CategoriesAdmin from './CategoriesAdmin'
 import DropAdmin from './DropAdmin'
 import HeroAdmin from './HeroAdmin'
+import LookbookAdmin from './LookbookAdmin'
 import './admin.css'
 
 export default function AdminApp() {
@@ -80,6 +81,7 @@ export default function AdminApp() {
           <button className={tab === 'categorias' ? 'is-active' : ''} onClick={() => setTab('categorias')}>Categorias</button>
           <button className={tab === 'inicio' ? 'is-active' : ''} onClick={() => setTab('inicio')}>Início</button>
           <button className={tab === 'drop' ? 'is-active' : ''} onClick={() => setTab('drop')}>Drop</button>
+          <button className={tab === 'lookbook' ? 'is-active' : ''} onClick={() => setTab('lookbook')}>Lookbook</button>
         </nav>
         <div className="admin__right">
           <Link className="admin-link" to="/" target="_blank">Ver site ↗</Link>
@@ -92,6 +94,7 @@ export default function AdminApp() {
         {tab === 'categorias' && <CategoriesAdmin />}
         {tab === 'inicio' && <HeroAdmin />}
         {tab === 'drop' && <DropAdmin />}
+        {tab === 'lookbook' && <LookbookAdmin />}
       </main>
     </div>
   )

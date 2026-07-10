@@ -5,6 +5,7 @@ import {
   categories as seedCategories,
   drop as seedDrop,
   hero as seedHero,
+  lookbook as seedLookbook,
 } from '../data/siteContent'
 
 const ContentContext = createContext(null)
@@ -42,11 +43,18 @@ function mapDrop(settings, dropProducts) {
   }
 }
 
-// Monta o hero final: usa as fotos salvas no admin quando existirem,
-// senão mantém as fotos padrão do siteContent.
 function mapHero(settings) {
   const imgs = settings && Array.isArray(settings.hero_images) ? settings.hero_images : []
   return { ...seedHero, images: imgs.length ? imgs : seedHero.images }
+}
+
+function mapLookbook(settings) {
+  const imgs = settings && Array.isArray(settings.lookbook_images) ? settings.lookbook_images : []
+  if (!imgs.length) return seedLookbook
+  return {
+    ...seedLookbook,
+    images: imgs.map((url, i) => ({ src: url, alt: `Look ${i + 1}` })),
+  }
 }
 
 // Estado inicial = fallback (site nunca aparece vazio)
@@ -55,6 +63,7 @@ const fallbackState = {
   categories: seedCategories,
   drop: seedDrop,
   hero: seedHero,
+  lookbook: seedLookbook,
   loading: isSupabaseConfigured,
   error: null,
   source: 'fallback',
@@ -92,6 +101,7 @@ export function ContentProvider({ children }) {
         categories,
         drop: mapDrop(ds.data, dropProducts),
         hero: mapHero(siteSettings),
+        lookbook: mapLookbook(siteSettings),
         loading: false,
         error: null,
         source: 'supabase',

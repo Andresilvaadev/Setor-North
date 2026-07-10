@@ -57,7 +57,7 @@ export default function Footer() {
 
       <div className="footer__bottom">
         <div className="container footer__bottomrow">
-          <span>© {new Date().getFullYear()} {store.name}. Todos os direitos reservados.</span>
+          <span>© {new Date().getFullYear()} {store.name}. by <a href="https://valtryxsystems.com.br/" target="_blank" rel="noopener noreferrer" className="footer__valtryx">Valtryx Systems</a></span>
           <a className="footer__admin" href="/admin">Admin</a>
         </div>
       </div>

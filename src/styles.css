@@ -572,6 +572,8 @@ img { display: block; max-width: 100%; }
 .footer__bottomrow { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .footer__admin { color: var(--gray-400); font-size: 0.78rem; letter-spacing: 0.04em; }
 .footer__admin:hover { color: var(--paper); }
+.footer__valtryx { color: var(--paper); text-decoration: none; }
+.footer__valtryx:hover { color: var(--paper); }
 
 /* ---------- CARRINHO — ÍCONE NO HEADER ---------- */
 .header__right {

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { lookbook, store } from '../data/siteContent'
+import { store } from '../data/siteContent'
+import { useContent } from '../context/ContentContext'
 import { InstagramIcon } from './Icons'
 
 function LookImage({ img, index }) {
@@ -16,6 +17,7 @@ function LookImage({ img, index }) {
 }
 
 export default function Lookbook() {
+  const { lookbook } = useContent()
   return (
     <section id="lookbook" className="section">
       <div className="container">

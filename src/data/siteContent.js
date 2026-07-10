@@ -5,8 +5,8 @@ export const store = {
   location: 'Altamira - PA',
   logo: '/images/setornorth.jpeg',
   whatsapp: '5593991707749',
-  instagram: 'setornorth',
-  instagramUrl: 'https://www.instagram.com/setornorth/',
+  instagram: 'setor.north',
+  instagramUrl: 'https://www.instagram.com/setor.north/',
   email: '',
 }
 

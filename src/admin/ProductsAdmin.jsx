@@ -6,7 +6,7 @@ const STATUS = ['disponivel', 'esgotado']
 function blank() {
   return {
     id: null, sku: '', name: '', category: '', color: '',
-    price: '', promo_price: '', sizes: [], image: '', images: [], status: 'disponivel',
+    price: '', promo_price: '', description: '', sizes: [], image: '', images: [], status: 'disponivel',
     featured: false, is_drop: false, sort_order: 0,
   }
 }
@@ -88,6 +88,7 @@ export default function ProductsAdmin() {
       color: editing.color,
       price: editing.price === '' || editing.price === null ? null : Number(editing.price),
       promo_price: editing.promo_price === '' || editing.promo_price === null ? null : Number(editing.promo_price),
+      description: editing.description || '',
       sizes: editing.sizes,
       images: editing.images || [],
       image: (editing.images && editing.images[0]) || '', // capa = 1ª imagem (compatibilidade)
@@ -172,6 +173,15 @@ export default function ProductsAdmin() {
               </label>
               <label>Ordem<input type="number" value={editing.sort_order} onChange={(e) => setEditing({ ...editing, sort_order: e.target.value })} /></label>
             </div>
+
+            <label className="adm__desc">Descrição (aparece na página do produto)
+              <textarea
+                rows={4}
+                value={editing.description || ''}
+                onChange={(e) => setEditing({ ...editing, description: e.target.value })}
+                placeholder={'Ex.: Camiseta oversized 100% algodão, gramatura 210g.\nModelagem ampla, gola reforçada.'}
+              />
+            </label>
 
             <div className="adm__checks">
               <label className="chk"><input type="checkbox" checked={editing.featured} onChange={(e) => setEditing({ ...editing, featured: e.target.checked })} /> Destaque</label>

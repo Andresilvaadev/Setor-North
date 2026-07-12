@@ -342,6 +342,9 @@ img { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 .card--sold { opacity: 0.85; }
@@ -355,55 +358,6 @@ img { display: block; max-width: 100%; }
 .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .card:hover .card__media img { transform: scale(1.04); }
 
-/* galeria de fotos do card (setas + bolinhas) */
-.card__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  border: none;
-  border-radius: 50%;
-  background: rgba(10, 10, 10, 0.55);
-  color: var(--paper);
-  font-size: 1.3rem;
-  line-height: 1;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s ease, background 0.2s ease;
-  z-index: 2;
-}
-.card__nav--prev { left: 8px; }
-.card__nav--next { right: 8px; }
-.card:hover .card__nav { opacity: 1; }
-.card__nav:hover { background: rgba(10, 10, 10, 0.85); }
-.card__dots {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 8px;
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  z-index: 2;
-}
-.card__dot {
-  width: 7px;
-  height: 7px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.card__dot--on { background: var(--paper); transform: scale(1.25); }
-@media (hover: none) {
-  .card__nav { opacity: 1; }
-}
 .card__placeholder {
   width: 100%;
   height: 100%;
@@ -470,8 +424,19 @@ img { display: block; max-width: 100%; }
 .size:hover:not(:disabled) { border-color: var(--ink); }
 .size--active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .size:disabled { opacity: 0.4; cursor: not-allowed; }
-
 .card .btn { margin-top: auto; }
+
+.card__cta {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  transition: color 0.15s ease;
+}
+.card:hover .card__cta { color: var(--ink); }
 
 /* ---------- DTF ---------- */
 .steps {
@@ -792,6 +757,105 @@ img { display: block; max-width: 100%; }
 /* ---------- CARD — BOTÕES DUPLOS ---------- */
 .card__actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
 .btn--added { background: #2a7a2a !important; border-color: #2a7a2a !important; }
+
+/* ---------- PÁGINA DO PRODUTO ---------- */
+.pp { padding: 120px 0 70px; min-height: 70vh; }
+.pp--empty { display: flex; align-items: center; }
+.pp__loading { color: var(--gray-500); }
+.pp__notfound { font-family: var(--font-display); font-size: 2rem; margin: 0 0 8px; }
+.pp__notfound-text { color: var(--gray-500); margin: 0 0 22px; }
+
+.pp__breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  margin-bottom: 26px;
+}
+.pp__breadcrumb a { color: var(--gray-500); text-decoration: none; }
+.pp__breadcrumb a:hover { color: var(--ink); }
+.pp__breadcrumb strong { color: var(--ink); font-weight: 700; }
+
+.pp__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+/* galeria */
+.pp__main {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--gray-100);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.pp__main img { width: 100%; height: 100%; object-fit: cover; }
+.pp__badge { position: absolute; right: 12px; top: 12px; }
+.pp__placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: repeating-linear-gradient(45deg, #ededea 0 12px, #f4f4f2 12px 24px);
+  color: var(--gray-400);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+.pp__thumbs { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.pp__thumb {
+  width: 72px;
+  height: 90px;
+  padding: 0;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--gray-100);
+  cursor: pointer;
+  transition: border-color 0.15s ease, opacity 0.15s ease;
+  opacity: 0.75;
+}
+.pp__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pp__thumb:hover { opacity: 1; }
+.pp__thumb--on { border-color: var(--ink); opacity: 1; }
+
+/* informações */
+.pp__info { display: flex; flex-direction: column; gap: 10px; }
+.pp__cat { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); font-weight: 700; }
+.pp__name { font-family: var(--font-display); font-size: clamp(1.7rem, 3.5vw, 2.5rem); line-height: 1.08; margin: 0; }
+.pp__sku { font-size: 0.75rem; color: var(--gray-400); letter-spacing: 0.06em; }
+.pp__price { font-family: var(--font-display); font-size: 2rem; margin: 6px 0 2px; }
+.pp__price--sale { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; }
+.pp__price--sale .card__price-old { font-size: 1.2rem; }
+.pp__desc { color: var(--gray-700); line-height: 1.65; margin: 4px 0; white-space: pre-line; }
+.pp__details { list-style: none; padding: 0; margin: 2px 0 6px; display: flex; flex-direction: column; gap: 4px; font-size: 0.88rem; color: var(--gray-700); }
+.pp__block { margin-top: 6px; }
+.pp__label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; color: var(--gray-700); }
+.pp__warn { color: #b3261e; font-style: normal; text-transform: none; letter-spacing: 0; }
+.pp__qty { display: inline-flex; align-items: center; gap: 0; border: 1.4px solid var(--line); border-radius: 6px; overflow: hidden; }
+.pp__qty button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--white);
+  font-size: 1.15rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+.pp__qty button:hover { background: var(--gray-100); }
+.pp__qty span { min-width: 44px; text-align: center; font-weight: 700; }
+.pp__actions { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; max-width: 420px; }
+
+@media (max-width: 860px) {
+  .pp { padding: 96px 0 50px; }
+  .pp__grid { grid-template-columns: 1fr; gap: 26px; }
+  .pp__actions { max-width: none; }
+}
 
 /* ---------- BOTÃO FLUTUANTE WHATSAPP ---------- */
 .wa-float {

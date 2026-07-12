@@ -27,14 +27,16 @@ export function isOnSale(product) {
 }
 
 // Mensagem padrão para compra de um produto (com ID/SKU).
-export function productLink(product, size) {
+export function productLink(product, size, qty = 1) {
+  const unit = effectivePrice(product)
   const message =
     `Olá! Tenho interesse neste produto da ${store.name}:\n\n` +
     `ID: ${product.id}\n` +
     `Produto: ${product.name}\n` +
     `Cor: ${product.color}\n` +
     `Tamanho: ${size || product.sizes[0]}\n` +
-    `Preço: ${formatPrice(effectivePrice(product))}${isOnSale(product) ? ' (promoção)' : ''}\n\n` +
+    (qty > 1 ? `Quantidade: ${qty}\n` : '') +
+    `Preço: ${unit != null ? formatPrice(unit * qty) : 'Sob consulta'}${isOnSale(product) ? ' (promoção)' : ''}\n\n` +
     `Ainda está disponível?`
   return buildLink(message)
 }

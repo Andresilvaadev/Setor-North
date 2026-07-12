@@ -21,6 +21,7 @@ function mapProduct(row) {
     color: row.color || '',
     price: row.price != null ? Number(row.price) : null,
     promoPrice: row.promo_price != null ? Number(row.promo_price) : null,
+    description: row.description || '',
     sizes: row.sizes || [],
     image: row.image || '',
     images: Array.isArray(row.images) && row.images.length

@@ -29,6 +29,7 @@ create table if not exists public.products (
   color       text default '',
   price       numeric(10,2),                        -- null = "sob consulta"
   promo_price numeric(10,2),                         -- preço de promoção (null = sem promoção)
+  description text not null default '',              -- descrição completa (página do produto)
   sizes       text[] not null default '{}',         -- ex.: {P,M,G,GG}
   image       text default '',                      -- capa (1ª foto) — compatibilidade
   images      text[] not null default '{}',         -- todas as fotos do produto (galeria)

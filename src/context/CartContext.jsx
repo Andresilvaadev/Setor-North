@@ -7,15 +7,15 @@ export function CartProvider({ children }) {
   const [items, setItems] = useState([])
   const [isOpen, setIsOpen] = useState(false)
 
-  function addItem(product, size) {
+  function addItem(product, size, qty = 1) {
     setItems(prev => {
       const idx = prev.findIndex(i => i.product.id === product.id && i.size === size)
       if (idx >= 0) {
         const next = [...prev]
-        next[idx] = { ...next[idx], qty: next[idx].qty + 1 }
+        next[idx] = { ...next[idx], qty: next[idx].qty + qty }
         return next
       }
-      return [...prev, { product, size, qty: 1 }]
+      return [...prev, { product, size, qty }]
     })
   }
 

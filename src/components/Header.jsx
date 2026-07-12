@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { store } from '../data/siteContent'
 import { useContent } from '../context/ContentContext'
 import { useCart } from '../context/CartContext'
@@ -8,6 +9,7 @@ const baseLinks = [
   { id: 'inicio', label: 'Início' },
   { id: 'catalogo', label: 'Pronta Entrega' },
   { id: 'dtf', label: 'Personalização DTF' },
+  { id: 'lookbook', label: 'Lookbook' },
   { id: 'sobre', label: 'Sobre' },
   { id: 'contato', label: 'Contato' },
 ]
@@ -31,10 +33,18 @@ export default function Header() {
     ? [...baseLinks.slice(0, 2), { id: 'drop', label: 'Drop' }, ...baseLinks.slice(2)]
     : baseLinks
 
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const go = (id) => {
     setOpen(false)
     const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    } else if (location.pathname !== '/') {
+      // Fora da home (ex.: página de produto): volta pra home e rola até a seção
+      navigate('/', { state: { scrollTo: id } })
+    }
   }
 
   return (

@@ -69,6 +69,9 @@
 .adm__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .adm__form label { display: flex; flex-direction: column; gap: 5px; font-size: .82rem; font-weight: 600; }
 .adm__form input, .adm__form select { padding: 9px; border: 1px solid #ccc; border-radius: 6px; font-size: .95rem; }
+.adm__desc { margin-top: 12px; }
+.adm__desc textarea { padding: 9px; border: 1px solid #ccc; border-radius: 6px; font-size: .95rem; font-family: inherit; resize: vertical; }
+
 .adm__checks { display: flex; gap: 18px; margin: 14px 0; }
 .chk { flex-direction: row !important; align-items: center; gap: 8px; }
 .adm__upload { display: flex; gap: 16px; align-items: center; margin-bottom: 8px; }

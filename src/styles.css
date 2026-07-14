@@ -889,8 +889,11 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 560px) {
   .section { padding: 64px 0; }
-  .container { padding: 0 18px; }
+  /* só as laterais — não zerar o padding de cima (senão o hero encosta no navbar) */
+  .container { padding-left: 18px; padding-right: 18px; }
   .hero { min-height: 88vh; }
+  /* garante que o conteúdo do hero comece abaixo do header fixo */
+  .hero__inner { padding-top: 96px; }
   .grid { grid-template-columns: 1fr 1fr; gap: 14px; }
   .card__body { padding: 12px; }
   .card__name { font-size: 0.9rem; }
